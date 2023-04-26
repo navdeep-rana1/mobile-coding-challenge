@@ -38,18 +38,15 @@ class PodcastLoaderAPI{
 }
 
 
-class PodcastClient{
+class PodcastClientSpy: PodcastClient{
     
     typealias Result = PodcastResult
     var getPodcastCallCount = 0
     var arrayCompletions = [(Result) -> Void]()
+
     
-    enum PodcastResult{
-        case success(Data)
-        case failure(PodcastApiError)
-    }
-    
-    func getPodcasts(completion: @escaping (Result) -> Void){
+    func getPodcasts(completion: @escaping (Result) -> Void)
+    {
         getPodcastCallCount += 1
         arrayCompletions.append(completion)
     }
@@ -163,8 +160,8 @@ final class PodcastFeedTests: XCTestCase {
     private func anyURL() -> URL{
         URL(string: "http://any-podcast-url.com")!
     }
-    private func makeSUT() -> (PodcastLoaderAPI, PodcastClient){
-        let client = PodcastClient()
+    private func makeSUT() -> (PodcastLoaderAPI, PodcastClientSpy){
+        let client = PodcastClientSpy()
         let sut = PodcastLoaderAPI(client: client)
         return (sut, client)
     }
