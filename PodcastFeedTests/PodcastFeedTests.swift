@@ -10,6 +10,7 @@ import Foundation
 import PodcastAPI
 import PodcastFeed
 
+
 class PodcastLoaderAPI{
     private let client: PodcastClient
     
@@ -20,7 +21,8 @@ class PodcastLoaderAPI{
     init(client: PodcastClient) {
         self.client = client
     }
-    func load(completion: @escaping (Result) -> Void){
+    func load(completion: @escaping (Result) -> Void)
+    {
         client.getPodcasts{ result in
             switch result{
             case let .failure(error):
