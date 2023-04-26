@@ -6,32 +6,62 @@
 //
 
 import Foundation
-public struct Root: Decodable{
-    public let podcasts: [Podcast]
-}
-public struct Podcast: Equatable{
-    public init(id: Int, title: String, author: String, description: String, imageURL: URL) {
-        self.id = id
-        self.title = title
-        self.author = author
-        self.description = description
-        self.imageURL = imageURL
-    }
-    
-    public let id: Int
-    public let title: String
-    public let author: String
-    public let description: String
-    public let imageURL: URL
+import SwiftyJSON
+
+public struct Results {
+    public let podcast: Podcast
     
 }
 
-extension Podcast: Decodable{
-    private enum CodingKeys: String, CodingKey{
-        case id
-        case title
-        case author = "publisher"
-        case description
-        case imageURL = "image"
+// MARK: - Result
+public struct Podcast {
+    public init(title: String, description: String, id: String, imageURL: URL, thumbnailURL: URL, publisher: String) {
+        self.title = title
+        self.description = description
+        self.id = id
+        self.imageURL = imageURL
+        self.thumbnailURL = thumbnailURL
+        self.publisher = publisher
+    }
+    
+    public var title: String
+    public var description: String
+    public var id: String
+    public var imageURL: URL
+    public var thumbnailURL: URL
+    public var publisher: String
+}
+
+
+public struct Item {
+    
+    // MARK: Declaration for string constants to be used to decode and also serialize.
+    private struct SerializationKeys {
+        static let results = "results"
+        static let podcast = "podcast"
+        static let thumnail = "thumbnail"
+        static let image = "image"
+        static let title = "title_original"
+        static let publisher = "publisher_original"
+        static let id = "id"
+        static let description = "description_highlighted"
+        
+        
+    }
+    var arrayPodcasts = [Podcast]()
+    
+    public init(json: JSON) {
+        let arrayResults = json[SerializationKeys.results].array
+        
+        arrayResults?.enumerated().forEach{ index, element in
+            let title = element[SerializationKeys.title].string
+            let thumbnail = element[SerializationKeys.thumnail].url
+            let imageURL = element[SerializationKeys.image].url
+            let id = element[SerializationKeys.id].string
+            let publisher = element[SerializationKeys.podcast][SerializationKeys.publisher].string
+            let description = element[SerializationKeys.description].string
+            let podcast = Podcast(title: title!, description: description! , id: id!, imageURL: imageURL!, thumbnailURL: thumbnail!, publisher: publisher!)
+            arrayPodcasts.append(podcast)
+        }
     }
 }
