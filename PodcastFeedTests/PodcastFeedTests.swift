@@ -62,6 +62,26 @@ final class PodcastFeedTests: XCTestCase {
         client.completes(with: PodcastApiError.apiConnectionError)
         XCTAssertEqual(receivedError, .apiConnectionError)
     }
+
+    
+    func test_load_failsWithSameErrorAsClient(){
+        let (sut, client) = makeSUT()
+        let sampleErrors = [PodcastApiError.apiConnectionError, PodcastApiError.authenticationError, PodcastApiError.invalidRequestError, PodcastApiError.notFoundError, PodcastApiError.serverError, PodcastApiError.tooManyRequestsError]
+        let exp = expectation(description: "wait for request to complete")
+        exp.expectedFulfillmentCount = sampleErrors.count
+        
+        sampleErrors.enumerated().forEach{ index, element in
+            var receivedErrors = [PodcastApiError?]()
+            sut.load{ receivedErrors.append($0)
+                XCTAssertEqual([element], receivedErrors)
+                exp.fulfill()
+                
+            }
+            client.completes(with: element, at: index)
+
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
     
     private func makeSUT() -> (PodcastLoaderAPI, PodcastClient){
         let client = PodcastClient()
