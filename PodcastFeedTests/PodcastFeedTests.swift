@@ -11,32 +11,6 @@ import PodcastAPI
 import PodcastFeed
 
 
-class PodcastLoaderAPI{
-    private let client: PodcastClient
-    
-    enum Result{
-        case success([Podcast])
-        case failure(PodcastApiError)
-    }
-    init(client: PodcastClient) {
-        self.client = client
-    }
-    func load(completion: @escaping (Result) -> Void)
-    {
-        client.getPodcasts{ result in
-            switch result{
-            case let .failure(error):
-                completion(.failure(error))
-            case let .success(data):
-                if let root = try? JSONDecoder().decode(Root.self, from: data){
-                    completion(.success(root.podcasts))
-                }
-            }
-            
-        }
-    }
-}
-
 
 class PodcastClientSpy: PodcastClient{
     
