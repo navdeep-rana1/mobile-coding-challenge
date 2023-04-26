@@ -8,12 +8,12 @@
 import Foundation
 import PodcastAPI
 
-enum PodcastResult{
+public enum PodcastResult{
     case success(Data)
     case failure(PodcastApiError)
 }
 
-protocol PodcastClient{
+public protocol PodcastClient{
     typealias Result = PodcastResult
     func getPodcasts(completion: @escaping (Result) -> Void)
 

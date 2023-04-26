@@ -20,9 +20,7 @@ class PodcastLoaderAPI{
     init(client: PodcastClient) {
         self.client = client
     }
-    var loadCallCount = 0
     func load(completion: @escaping (Result) -> Void){
-        loadCallCount += 1
         client.getPodcasts{ result in
             switch result{
             case let .failure(error):
@@ -63,8 +61,8 @@ final class PodcastFeedTests: XCTestCase {
 
    func test_init_doesnotRequestPodcastsFromBackendOnCreation()
     {
-        let (sut, _) = makeSUT()
-        XCTAssertEqual(sut.loadCallCount, 0)
+        let (_, client) = makeSUT()
+        XCTAssertEqual(client.getPodcastCallCount, 0)
         
     }
     
