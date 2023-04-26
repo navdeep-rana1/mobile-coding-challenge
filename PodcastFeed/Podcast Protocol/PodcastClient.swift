@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import PodcastAPI
+
 enum PodcastResult{
     case success(Data)
     case failure(PodcastApiError)
