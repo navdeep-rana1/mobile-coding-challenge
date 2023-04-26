@@ -11,7 +11,8 @@ App makes a request to the backend -> If response is succeess -> Decodes data ->
 - ✅ Assert that `PodcastLoader` doesn't make a request to client on init
 - ✅ Assert that `PodcastLoader` only makes request to client on `load` invocation
 - ✅ Assert that `PodcastLoader` fails with same errors as client
-- ✅ Assert that `PodcastLoader` can map data from client to correct `Podcast` objects 
+- ✅ Assert that `PodcastLoader` can map data from client to correct `Podcast` objects from dummy JSON file
+- ✅ Assert that `PodcastLoaderAPI` can fetch data from backend server and process it to display to user
 
 Please read the instructions below carefully before starting the coding challenge.
 
