@@ -8,9 +8,67 @@
 import XCTest
 @testable import PodcastFeed
 import PodcastAPI
+import SwiftyJSON
+class RemotePodcastClient: PodcastClient{
+    
+    func getPodcasts(completion: @escaping (PodcastClientResult) -> Void) {
+        let apiKey = ""
+        let client = PodcastAPI.Client(apiKey: apiKey)
 
+        // All parameters are passed via this Dictionary[String: String]
+        // For all parameters, please refer to https://www.listennotes.com/api/docs/
+        var parameters: [String: String] = [:]
+
+        parameters["q"] = "startup"
+        parameters["sort_by_date"] = "1"
+        client.search(parameters: parameters) { response in
+            if let error = response.error {
+                switch (error) {
+                case PodcastApiError.apiConnectionError:
+                    print("Can't connect to Listen API server")
+                case PodcastApiError.authenticationError:
+                    print("wrong api key")
+                default:
+                    print("unknown error")
+                }
+            } else {
+                if let data = response.toJson() {
+                    completion(.success(data))
+                }
+                
+            }
+        }
+    }
+    
+    
+}
 final class PodcastFeedEndToEndAPITests: XCTestCase {
 
     
+    func test_load_succeedsWithPodcastObjects(){
+        let (sut, client) = makeSUT()
+        let exp = expectation(description: "Wait for client to finish request")
+        sut.load { result in
+            switch result{
+            case let .success(arrayPodcast):
+                XCTAssertFalse(arrayPodcast.isEmpty)
+                XCTAssertEqual(arrayPodcast[0].title, "Star Wars - The Force Awakens")
+                XCTAssertEqual(arrayPodcast[0].publisher, "Matt Feury")
+                XCTAssertEqual(arrayPodcast[1].title, "Star Wars Theory: The Great Star Wars Ice Cream Conspiracy")
+                XCTAssertEqual(arrayPodcast[1].publisher, "J and Ben Carlin")
+                
+            case let .failure(error):
+                XCTFail("Expected succesfull result, but got \(error) instead")
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 5)
+    }
+    
+    private func makeSUT() -> (PodcastLoaderAPI, RemotePodcastClient){
+        let client = RemotePodcastClient()
+        let sut = PodcastLoaderAPI(client: client)
+        return (sut, client)
+    }
 
 }

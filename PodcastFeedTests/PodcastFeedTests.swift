@@ -9,7 +9,7 @@ import XCTest
 import Foundation
 import PodcastAPI
 import PodcastFeed
-
+import SwiftyJSON
 
 final class PodcastFeedTests: XCTestCase {
 
@@ -68,45 +68,34 @@ final class PodcastFeedTests: XCTestCase {
     
     func test_load_completesSuccesfullyWithPodcastsWhenClientCompletesWithData(){
         let (sut, client) = makeSUT()
-        let podcast1 = makeAPodcast()
-        let podcast2 = makeAPodcast()
-        
+       
         let exp = expectation(description: "wait for request")
-        let podcastJson = ["podcasts": [["id": podcast1.id,
-                                        "title": podcast1.title,
-                                        "image": podcast1.imageURL.absoluteString,
-                                        "description": podcast1.description,
-                                        "publisher": podcast1.author
-                                       ],
-                           ["id": podcast2.id,
-                            "title": podcast2.title,
-                            "image": podcast2.imageURL.absoluteString,
-                            "description": podcast2.description,
-                            "publisher": podcast2.author
-                           ]]]
-        
+        let jsonData = jsonDataResponse()
         sut.load{result in
             switch result{
             case .failure(_):
                 XCTFail("Expected success but got failure")
             case let .success(arrayPodcast):
-                XCTAssertEqual(arrayPodcast, [podcast1, podcast2])
-            
+                XCTAssertEqual(arrayPodcast[0].publisher, "Matt Feury")
+            case .failure(_):
+                XCTFail("Expected success but got failure")
+                
             }
             exp.fulfill()
             
         }
-        let jsonData = try! JSONSerialization.data(withJSONObject: podcastJson)
-        client.completesWithData(jsonData)
+        client.completesWithData(jsonData!)
 
         wait(for: [exp], timeout: 1.0)
     }
     
-    // MARK: - Helpers
-    
-    private func makeAPodcast() -> Podcast{
-        let randomID = Int.random(in: 100...1000)
-        return Podcast(id: randomID, title: "A Hit Podcast Title", author: "Any Author", description: "A description for a podcast", imageURL: anyURL())
+//    // MARK: - Helpers
+//    
+    private func jsonDataResponse() -> Data?{
+        let mainBundle = Bundle(identifier: "com.heyhub.PodcastFeedTests")
+        let bundle = Bundle(for: PodcastFeedTests.self)
+        let path = bundle.path(forResource: "Dummy", ofType: "json")
+        return try! Data(contentsOf: URL(fileURLWithPath: path!))
     }
     
     private func anyURL() -> URL{
@@ -124,7 +113,7 @@ final class PodcastFeedTests: XCTestCase {
     
     class PodcastClientSpy: PodcastClient{
         
-        typealias Result = PodcastResult
+        typealias Result = PodcastClientResult
         var getPodcastCallCount = 0
         var arrayCompletions = [(Result) -> Void]()
 
@@ -140,7 +129,8 @@ final class PodcastFeedTests: XCTestCase {
         }
         
         func completesWithData(_ data: Data, at index: Int = 0){
-            arrayCompletions[index](.success(data))
+            let json = try! JSON(data: data)
+            arrayCompletions[index](.success(json))
         }
     }
 }

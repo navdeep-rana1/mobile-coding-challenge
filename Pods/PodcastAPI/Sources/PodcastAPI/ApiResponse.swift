@@ -2,7 +2,7 @@ import Foundation
 import SwiftyJSON
 
 public class ApiResponse {
-    var data: Data?
+    public var data: Data?
     var response: HTTPURLResponse?
     var request: URLRequest?
     var httpError: Error?
