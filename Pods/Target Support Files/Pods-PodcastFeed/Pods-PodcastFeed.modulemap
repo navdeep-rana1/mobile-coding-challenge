@@ -1,0 +1,6 @@
+framework module Pods_PodcastFeed {
+  umbrella header "Pods-PodcastFeed-umbrella.h"
+
+  export *
+  module * { export * }
+}

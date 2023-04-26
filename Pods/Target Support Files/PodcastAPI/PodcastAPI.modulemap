@@ -1,0 +1,6 @@
+framework module PodcastAPI {
+  umbrella header "PodcastAPI-umbrella.h"
+
+  export *
+  module * { export * }
+}

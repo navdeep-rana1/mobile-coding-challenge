@@ -1,0 +1,20 @@
+PODS:
+  - PodcastAPI (1.1.4):
+    - SwiftyJSON (~> 4.0)
+  - SwiftyJSON (4.3.0)
+
+DEPENDENCIES:
+  - PodcastAPI
+
+SPEC REPOS:
+  trunk:
+    - PodcastAPI
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  PodcastAPI: a5b67f783879172fbeb76a329c8c37b0a79d44c6
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+
+PODFILE CHECKSUM: 3cd5becc50ea904cb6c49d41f49ffae9e212ba7e
+
+COCOAPODS: 1.11.3

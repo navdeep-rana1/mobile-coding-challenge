@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-PodcastFeed-PodcastFeedTests/Pods-PodcastFeed-PodcastFeedTests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/PodcastAPI/PodcastAPI.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
