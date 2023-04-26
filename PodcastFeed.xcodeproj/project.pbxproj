@@ -12,7 +12,7 @@
 		596EDFAA29F8E2C1007C89F0 /* PodcastFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596EDF9F29F8E2C1007C89F0 /* PodcastFeed.framework */; };
 		596EDFAF29F8E2C1007C89F0 /* PodcastFeedEndToEndAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596EDFAE29F8E2C1007C89F0 /* PodcastFeedEndToEndAPITests.swift */; };
 		596EDFBA29F8E9F6007C89F0 /* PodcastFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596EDFB929F8E9F6007C89F0 /* PodcastFeedTests.swift */; };
-		596EDFBC29F8EA58007C89F0 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596EDFBB29F8EA58007C89F0 /* Podcast.swift */; };
+		596EDFBC29F8EA58007C89F0 /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596EDFBB29F8EA58007C89F0 /* PodcastLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 		596EDFA929F8E2C1007C89F0 /* PodcastFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		596EDFAE29F8E2C1007C89F0 /* PodcastFeedEndToEndAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastFeedEndToEndAPITests.swift; sourceTree = "<group>"; };
 		596EDFB929F8E9F6007C89F0 /* PodcastFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastFeedTests.swift; sourceTree = "<group>"; };
-		596EDFBB29F8EA58007C89F0 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		596EDFBB29F8EA58007C89F0 /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
 		810F04BE47ECD287DA18ADE7 /* Pods-PodcastFeed-PodcastFeedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastFeed-PodcastFeedTests.debug.xcconfig"; path = "Target Support Files/Pods-PodcastFeed-PodcastFeedTests/Pods-PodcastFeed-PodcastFeedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C1DB9E5485C34170272B9708 /* Pods-PodcastFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastFeed.release.xcconfig"; path = "Target Support Files/Pods-PodcastFeed/Pods-PodcastFeed.release.xcconfig"; sourceTree = "<group>"; };
 		C90BF3B22B02A041D6224BAB /* Pods-PodcastFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastFeed.debug.xcconfig"; path = "Target Support Files/Pods-PodcastFeed/Pods-PodcastFeed.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		596EDFA129F8E2C1007C89F0 /* PodcastFeed */ = {
 			isa = PBXGroup;
 			children = (
-				596EDFBB29F8EA58007C89F0 /* Podcast.swift */,
+				596EDFBB29F8EA58007C89F0 /* PodcastLoader.swift */,
 			);
 			path = PodcastFeed;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				596EDFBC29F8EA58007C89F0 /* Podcast.swift in Sources */,
+				596EDFBC29F8EA58007C89F0 /* PodcastLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
