@@ -9,39 +9,7 @@ import XCTest
 @testable import PodcastFeed
 import PodcastAPI
 import SwiftyJSON
-class RemotePodcastClient: PodcastClient{
-    
-    func getPodcasts(completion: @escaping (PodcastClientResult) -> Void) {
-        let apiKey = ""
-        let client = PodcastAPI.Client(apiKey: apiKey)
 
-        // All parameters are passed via this Dictionary[String: String]
-        // For all parameters, please refer to https://www.listennotes.com/api/docs/
-        var parameters: [String: String] = [:]
-
-        parameters["q"] = "startup"
-        parameters["sort_by_date"] = "1"
-        client.search(parameters: parameters) { response in
-            if let error = response.error {
-                switch (error) {
-                case PodcastApiError.apiConnectionError:
-                    print("Can't connect to Listen API server")
-                case PodcastApiError.authenticationError:
-                    print("wrong api key")
-                default:
-                    print("unknown error")
-                }
-            } else {
-                if let data = response.toJson() {
-                    completion(.success(data))
-                }
-                
-            }
-        }
-    }
-    
-    
-}
 final class PodcastFeedEndToEndAPITests: XCTestCase {
 
     
