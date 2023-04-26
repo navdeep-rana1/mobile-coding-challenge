@@ -46,7 +46,7 @@ final class PodcastFeedEndToEndAPITests: XCTestCase {
 
     
     func test_load_succeedsWithPodcastObjects(){
-        let (sut, client) = makeSUT()
+        let (sut, _) = makeSUT()
         let exp = expectation(description: "Wait for client to finish request")
         sut.load { result in
             switch result{

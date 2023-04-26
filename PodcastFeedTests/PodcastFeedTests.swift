@@ -77,8 +77,7 @@ final class PodcastFeedTests: XCTestCase {
                 XCTFail("Expected success but got failure")
             case let .success(arrayPodcast):
                 XCTAssertEqual(arrayPodcast[0].publisher, "Matt Feury")
-            case .failure(_):
-                XCTFail("Expected success but got failure")
+            
                 
             }
             exp.fulfill()
@@ -92,7 +91,6 @@ final class PodcastFeedTests: XCTestCase {
 //    // MARK: - Helpers
 //    
     private func jsonDataResponse() -> Data?{
-        let mainBundle = Bundle(identifier: "com.heyhub.PodcastFeedTests")
         let bundle = Bundle(for: PodcastFeedTests.self)
         let path = bundle.path(forResource: "Dummy", ofType: "json")
         return try! Data(contentsOf: URL(fileURLWithPath: path!))
