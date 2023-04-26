@@ -7,14 +7,14 @@
 
 import Foundation
 import PodcastAPI
+import SwiftyJSON
 
-public enum PodcastResult{
-    case success(Data)
+public enum PodcastClientResult{
+    case success(JSON)
     case failure(PodcastApiError)
 }
 
 public protocol PodcastClient{
-    typealias Result = PodcastResult
-    func getPodcasts(completion: @escaping (Result) -> Void)
+    func getPodcasts(completion: @escaping (PodcastClientResult) -> Void)
 
 }

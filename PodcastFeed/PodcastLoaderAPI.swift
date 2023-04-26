@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftyJSON
 public class PodcastLoaderAPI: PodcastLoader{
     private let client: PodcastClient
   
@@ -20,9 +20,8 @@ public class PodcastLoaderAPI: PodcastLoader{
             case let .failure(error):
                 completion(.failure(error))
             case let .success(data):
-                if let root = try? JSONDecoder().decode(Root.self, from: data){
-                    completion(.success(root.podcasts))
-                }
+                let arrayPodcasts = Item(json: data).arrayPodcasts
+                completion(.success(arrayPodcasts))
             }
             
         }
