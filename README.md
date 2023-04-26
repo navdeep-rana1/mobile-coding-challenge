@@ -1,5 +1,18 @@
 # Mobile Developer Coding Challenge
 
+###TDD Flow:
+```
+User launches app -> Expects to see latest podcasts fetched from internet
+App makes a request to the backend -> If response is succeess -> Decodes data -> Displays to user
+-> If request is not succesful -> Shows an error message
+```
+
+##Testing Pointer #1:
+- ✅ Assert that `PodcastLoader` doesn't make a request to client on init
+- ✅ Assert that `PodcastLoader` only makes request to client on `load` invocation
+- ✅ Assert that `PodcastLoader` fails with same errors as client
+- ✅ Assert that `PodcastLoader` can map data from client to correct `Podcast` objects 
+
 Please read the instructions below carefully before starting the coding challenge.
 
 Once submitted, the mobile team will review your work and get back to you as soon as possible.

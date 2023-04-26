@@ -13,6 +13,7 @@
 		596EDFAF29F8E2C1007C89F0 /* PodcastFeedEndToEndAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596EDFAE29F8E2C1007C89F0 /* PodcastFeedEndToEndAPITests.swift */; };
 		596EDFBA29F8E9F6007C89F0 /* PodcastFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596EDFB929F8E9F6007C89F0 /* PodcastFeedTests.swift */; };
 		596EDFBC29F8EA58007C89F0 /* PodcastLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596EDFBB29F8EA58007C89F0 /* PodcastLoader.swift */; };
+		5974A77B29F911590025F535 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5974A77A29F911590025F535 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		596EDFAE29F8E2C1007C89F0 /* PodcastFeedEndToEndAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastFeedEndToEndAPITests.swift; sourceTree = "<group>"; };
 		596EDFB929F8E9F6007C89F0 /* PodcastFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastFeedTests.swift; sourceTree = "<group>"; };
 		596EDFBB29F8EA58007C89F0 /* PodcastLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastLoader.swift; sourceTree = "<group>"; };
+		5974A77A29F911590025F535 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		810F04BE47ECD287DA18ADE7 /* Pods-PodcastFeed-PodcastFeedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastFeed-PodcastFeedTests.debug.xcconfig"; path = "Target Support Files/Pods-PodcastFeed-PodcastFeedTests/Pods-PodcastFeed-PodcastFeedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C1DB9E5485C34170272B9708 /* Pods-PodcastFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastFeed.release.xcconfig"; path = "Target Support Files/Pods-PodcastFeed/Pods-PodcastFeed.release.xcconfig"; sourceTree = "<group>"; };
 		C90BF3B22B02A041D6224BAB /* Pods-PodcastFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastFeed.debug.xcconfig"; path = "Target Support Files/Pods-PodcastFeed/Pods-PodcastFeed.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		596EDF9529F8E2C1007C89F0 = {
 			isa = PBXGroup;
 			children = (
+				5974A77A29F911590025F535 /* README.md */,
 				596EDFA129F8E2C1007C89F0 /* PodcastFeed */,
 				596EDFAD29F8E2C1007C89F0 /* PodcastFeedTests */,
 				596EDFA029F8E2C1007C89F0 /* Products */,
@@ -212,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5974A77B29F911590025F535 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
