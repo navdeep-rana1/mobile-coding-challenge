@@ -11,28 +11,6 @@ import PodcastAPI
 import PodcastFeed
 
 
-
-class PodcastClientSpy: PodcastClient{
-    
-    typealias Result = PodcastResult
-    var getPodcastCallCount = 0
-    var arrayCompletions = [(Result) -> Void]()
-
-    
-    func getPodcasts(completion: @escaping (Result) -> Void)
-    {
-        getPodcastCallCount += 1
-        arrayCompletions.append(completion)
-    }
-    
-    func completes(with error: PodcastApiError, at index: Int = 0){
-        arrayCompletions[index](.failure(error))
-    }
-    
-    func completesWithData(_ data: Data, at index: Int = 0){
-        arrayCompletions[index](.success(data))
-    }
-}
 final class PodcastFeedTests: XCTestCase {
 
    func test_init_doesnotRequestPodcastsFromBackendOnCreation()
@@ -142,5 +120,27 @@ final class PodcastFeedTests: XCTestCase {
 
     private func anyError() -> NSError{
         NSError(domain: "Any podcast error", code: 10)
+    }
+    
+    class PodcastClientSpy: PodcastClient{
+        
+        typealias Result = PodcastResult
+        var getPodcastCallCount = 0
+        var arrayCompletions = [(Result) -> Void]()
+
+        
+        func getPodcasts(completion: @escaping (Result) -> Void)
+        {
+            getPodcastCallCount += 1
+            arrayCompletions.append(completion)
+        }
+        
+        func completes(with error: PodcastApiError, at index: Int = 0){
+            arrayCompletions[index](.failure(error))
+        }
+        
+        func completesWithData(_ data: Data, at index: Int = 0){
+            arrayCompletions[index](.success(data))
+        }
     }
 }
